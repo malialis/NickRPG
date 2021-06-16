@@ -28,13 +28,21 @@ public class CharacterNavigationController : MonoBehaviour
     }
     public variant State;
 
-    //bool isMove;
+    private NavMeshAgent agent;
+    private Rigidbody rb;
+
+    public bool canMove;
 
 
   private void Awake()
     {
         movementSpeed = Random.Range(1f, 5f);
+        //anim = GetComponent<Animator>();
+
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+
     }
 
     void Update()
@@ -82,12 +90,12 @@ public class CharacterNavigationController : MonoBehaviour
             if (agent.velocity.magnitude > 0)
             {
                 anim.SetFloat("forwardSpeed", 1);
-                isMove = true;
+                canMove = true;
             }
             else
             {
                 anim.SetFloat("forwardSpeed", 0);
-                isMove = false;
+                canMove = false;
             }
         }
 
@@ -97,12 +105,12 @@ public class CharacterNavigationController : MonoBehaviour
             if (rb.velocity.magnitude > 0)
             {
                 anim.SetFloat("forwardSpeed", 1);
-                isMove = true;
+                canMove = true;
             }
             else
             {
                 anim.SetFloat("forwardSpeed", 0);
-                isMove = false;
+                canMove = false;
             }
         }
     }

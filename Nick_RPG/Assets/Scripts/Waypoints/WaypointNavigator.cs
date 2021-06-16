@@ -19,14 +19,14 @@ public class WaypointNavigator : MonoBehaviour
     private void Start()
     {
         if(controller.canMove)
-        controller.SetTarget(currentWaypoint.GetPosition());
+        controller.SetDestination(currentWaypoint.GetPosition());
 
         direction = Mathf.RoundToInt(Random.Range(0f, 1f));
     }
 
     private void Update()
     {
-        if (controller.IsReached())
+        if (controller.reachedDestination == true)
         {
             bool shouldBranch = false;
 
@@ -69,7 +69,7 @@ public class WaypointNavigator : MonoBehaviour
                 }
             }           
             
-            controller.SetTarget(currentWaypoint.GetPosition());
+            controller.SetDestination(currentWaypoint.GetPosition());
         }
     }
 
